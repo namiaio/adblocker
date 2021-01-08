@@ -1,6 +1,6 @@
 {
-  "name": "@cliqz/adblocker-puppeteer",
-  "version": "1.19.0",
+  "name": "@namiaio/adblocker-puppeteer",
+  "version": "1.19.2",
   "description": "Cliqz adblocker Puppeteer wrapper",
   "author": {
     "name": "Cliqz"

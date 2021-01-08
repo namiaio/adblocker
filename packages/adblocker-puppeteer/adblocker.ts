@@ -15,6 +15,22 @@ import { FiltersEngine, Request, RequestType } from '@cliqz/adblocker';
 
 import { autoRemoveScript, extractFeaturesFromDOM, DOMMonitor } from '@cliqz/adblocker-content';
 
+const resourceTypesToBlock = [
+  // 'document',
+  'stylesheet',
+  'image',
+  'media',
+  'font',
+  // 'script',
+  // 'texttrack',
+  // 'xhr',
+  // 'fetch',
+  // 'eventsource',
+  // 'websocket',
+  // 'manifest',
+  // 'other',
+];
+
 function sleep(milliseconds: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, milliseconds);
@@ -289,7 +305,11 @@ export class PuppeteerBlocker extends FiltersEngine {
       return;
     }
 
-    const { redirect, match } = this.match(request);
+    let { redirect, match } = this.match(request);
+
+		if (resourceTypesToBlock.includes(request.type)) {
+			match = true;
+		}
 
     if (redirect !== undefined) {
       if (redirect.contentType.endsWith(';base64')) {
