@@ -15,7 +15,7 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://verdaccio.namia.io/"
   },
   "repository": {
     "type": "git",
