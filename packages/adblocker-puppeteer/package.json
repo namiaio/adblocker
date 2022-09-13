@@ -1,6 +1,6 @@
 {
   "name": "@namiaio/adblocker-puppeteer",
-  "version": "1.19.2",
+  "version": "1.25.1",
   "description": "Cliqz adblocker Puppeteer wrapper",
   "author": {
     "name": "Cliqz"
@@ -34,28 +34,26 @@
     "url": "https://github.com/cliqz-oss/adblocker/issues"
   },
   "peerDependencies": {
-    "@types/puppeteer": "5.x",
-    "puppeteer": "5.x"
+    "puppeteer": ">5"
   },
   "dependencies": {
-    "@cliqz/adblocker": "^1.19.0",
-    "@cliqz/adblocker-content": "^1.19.0",
+    "@cliqz/adblocker": "^1.25.0",
+    "@cliqz/adblocker-content": "^1.25.0",
     "tldts-experimental": "^5.6.21"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.11",
-    "@types/mocha": "^8.0.0",
-    "@types/puppeteer": "5.x",
+    "@types/chai": "^4.2.18",
+    "@types/mocha": "^9.0.0",
     "chai": "^4.2.0",
-    "mocha": "^8.0.1",
+    "mocha": "^10.0.0",
     "nyc": "^15.0.0",
-    "puppeteer": "5.x",
+    "puppeteer": "17.0.0",
     "rimraf": "^3.0.0",
-    "ts-node": "^9.0.0",
+    "ts-node": "^10.0.0",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-no-unused-expression-chai": "^0.1.4",
-    "typescript": "^4.1.2"
+    "typescript": "^4.4.3"
   },
   "contributors": [
     {
@@ -89,6 +87,14 @@
     {
       "name": "Anton Lazarev",
       "email": "antonok35@gmail.com"
+    },
+    {
+      "name": "Konstantin Mosunov",
+      "email": "mosunov.konstantin@huawei.com"
+    },
+    {
+      "name": "Rodrigo Fernández",
+      "email": "fdezromero@users.noreply.github.com"
     }
   ]
 }
