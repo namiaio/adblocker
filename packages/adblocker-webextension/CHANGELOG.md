@@ -1,3 +1,155 @@
+# v1.25.0 (Tue Aug 30 2022)
+
+#### :rocket: New Feature
+
+- New option "enablePushInjectionsOnNavigationEvents" [#2750](https://github.com/ghostery/adblocker/pull/2750) ([@philipp-classen](https://github.com/philipp-classen))
+
+#### Authors: 1
+
+- Philipp Claßen ([@philipp-classen](https://github.com/philipp-classen))
+
+---
+
+# v1.23.9 (Fri Aug 19 2022)
+
+#### :nut_and_bolt: Dependencies
+
+- Build(deps-dev): Bump mocha from 9.2.2 to 10.0.0 [#2582](https://github.com/ghostery/adblocker/pull/2582) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
+# v1.23.7 (Wed Mar 23 2022)
+
+#### :bug: Bug Fix
+
+- Don't throw an error when receiving a message from popup [#2506](https://github.com/ghostery/adblocker/pull/2506) ([@private-face](https://github.com/private-face))
+
+#### Authors: 1
+
+- Vladimir Zhuravlev ([@private-face](https://github.com/private-face))
+
+---
+
+# v1.22.7 (Wed Sep 22 2021)
+
+#### :house: Internal
+
+- Bump typescript [#2243](https://github.com/cliqz-oss/adblocker/pull/2243) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.22.3 (Thu Jul 29 2021)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/mocha from 8.2.3 to 9.0.0 [#2062](https://github.com/cliqz-oss/adblocker/pull/2062) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump webextension-polyfill-ts from 0.25.0 to 0.26.0 [#2027](https://github.com/cliqz-oss/adblocker/pull/2027) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
+# v1.22.2 (Sun Jun 20 2021)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump mocha from 8.4.0 to 9.0.0 [#1989](https://github.com/cliqz-oss/adblocker/pull/1989) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
+# v1.21.0 (Sun May 30 2021)
+
+#### :rocket: New Feature
+
+- Bump Electron to v13.x and Puppeteer to v9.x [#1967](https://github.com/cliqz-oss/adblocker/pull/1967) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Bump lock file to fix some security issue [#1922](https://github.com/cliqz-oss/adblocker/pull/1922) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @rollup/plugin-node-resolve from 11.2.1 to 13.0.0 [#1912](https://github.com/cliqz-oss/adblocker/pull/1912) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.20.3 (Sat Feb 27 2021)
+
+#### :house: Internal
+
+- Update copyright notices [#1715](https://github.com/cliqz-oss/adblocker/pull/1715) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.20.1 (Tue Feb 16 2021)
+
+#### :bug: Bug Fix
+
+- build(deps): bump webextension-polyfill-ts from 0.24.0 to 0.25.0 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump webextension-polyfill-ts from 0.22.0 to 0.24.0 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### :nut_and_bolt: Dependencies
+
+- build(deps): bump webextension-polyfill-ts from 0.24.0 to 0.25.0 [#1681](https://github.com/cliqz-oss/adblocker/pull/1681) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump webextension-polyfill-ts from 0.22.0 to 0.24.0 [#1629](https://github.com/cliqz-oss/adblocker/pull/1629) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 1
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+
+---
+
+# v1.20.0 (Thu Jan 21 2021)
+
+### Release Notes
+
+#### Initial support for extended CSS selectors (a.k.a. procedural filters) ([#1574](https://github.com/cliqz-oss/adblocker/pull/1574))
+
+Add initial support for extended CSS selectors (a.k.a. procedural filters) as well as the `:remove()` modifier for element hiding rules (note: the already supported `:style` modified now also works with extended CSS selectors). The following new pseudo-classes are implemented: `:has` (and its alias `:if`), `:has-text` (both string and RegExp literals), and `:not` (whenever its argument is also an extended selector, otherwise fallback to native implementation).
+
+Caveats:
+* Loading of extended css filters is disabled by default and needs to be toggled using the `loadExtendedSelectors` option while [initializing the blocker instance](https://github.com/cliqz-oss/adblocker/blob/3361723138f40c3cb96b4c6e611f2b030f75d891/packages/adblocker-webextension-example/background.ts#L61).
+* These news selectors are currently only supported by `WebExtensionBlocker` (support for Puppeteer, Electron and Playwright is not planned at this time but help from the community would be greatly appreciated).
+
+Miscellaneous changes:
+* Removal of unused `injectCSSRule` helper.
+* Replace Closure compiler by Terser.
+
+---
+
+#### :rocket: New Feature
+
+- Initial support for extended CSS selectors (a.k.a. procedural filters) [#1574](https://github.com/cliqz-oss/adblocker/pull/1574) ([@remusao](https://github.com/remusao))
+
+#### Authors: 1
+
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v1.19.0 (Wed Dec 16 2020)
 
 #### :bug: Bug Fix

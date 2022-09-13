@@ -39,6 +39,14 @@ const adb = require('@cliqz/adblocker');
       ['ublock-origin', 'filters-2020.txt'],
     ],
     [
+      'https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2021.txt',
+      ['ublock-origin', 'filters-2021.txt'],
+    ],
+    [
+      'https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters-2022.txt',
+      ['ublock-origin', 'filters-2022.txt'],
+    ],
+    [
       'https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt',
       ['ublock-origin', 'badware.txt'],
     ],
@@ -64,10 +72,7 @@ const adb = require('@cliqz/adblocker');
     // Easylist
     ['https://easylist.to/easylist/easyprivacy.txt', ['easylist', 'easyprivacy.txt']],
     ['https://easylist.to/easylist/easylist.txt', ['easylist', 'easylist.txt']],
-    [
-      'https://easylist-downloads.adblockplus.org/easylist-cookie.txt',
-      ['easylist', 'easylist-cookie.txt'],
-    ],
+    ['https://secure.fanboy.co.nz/fanboy-cookiemonster.txt', ['easylist', 'easylist-cookie.txt']],
     [
       'https://easylist.to/easylistgermany/easylistgermany.txt',
       ['easylist', 'easylistgermany.txt'],

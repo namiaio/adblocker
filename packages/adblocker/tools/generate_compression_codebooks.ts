@@ -23,6 +23,7 @@ async function getCosmeticFilters(): Promise<CosmeticFilter[]> {
     debug: true,
     loadCosmeticFilters: true,
     loadNetworkFilters: false,
+    enableHtmlFiltering: true,
   }).cosmeticFilters;
 }
 
@@ -31,6 +32,7 @@ async function getNetworkFilters(): Promise<NetworkFilter[]> {
     debug: true,
     loadCosmeticFilters: false,
     loadNetworkFilters: true,
+    loadExtendedSelectors: true,
   }).networkFilters;
 }
 
@@ -105,7 +107,7 @@ function validateCodebook(codebook: string[], strings: string[]): void {
 async function generateCodebook(kind: string): Promise<string[]> {
   const strings = await getStrings(kind);
   console.log(`Generate codebook ${kind} using ${strings.length} strings.`);
-  const options = kind.startsWith('raw-') ? { maxNgram: 30 } : {};
+  const options = kind.startsWith('raw-') ? { maxNgram: 28 } : {};
   const codebook = generate(strings, options);
   validateCodebook(codebook, strings);
   return codebook;

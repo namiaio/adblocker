@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2019 Cliqz GmbH. All rights reserved.
+ * Copyright (c) 2017-present Cliqz GmbH. All rights reserved.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -58,6 +58,7 @@ chrome.tabs.onUpdated.addListener((tabId, { status, url }) => {
 WebExtensionBlocker.fromLists(fetch, fullLists, {
   enableCompression: true,
   enableHtmlFiltering: true,
+  loadExtendedSelectors: true,
 }).then((blocker: WebExtensionBlocker) => {
   blocker.enableBlockingInBrowser(browser);
 

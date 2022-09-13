@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2019 Cliqz GmbH. All rights reserved.
+ * Copyright (c) 2017-present Cliqz GmbH. All rights reserved.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -18,7 +18,8 @@ import type {
 const PRELOAD_PATH = require.resolve('@cliqz/adblocker-electron-preload');
 
 // https://stackoverflow.com/questions/48854265/why-do-i-see-an-electron-security-warning-after-updating-my-electron-project-t
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true';
+// tslint:disable no-string-literal
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 /**
  * Create an instance of `Request` from `Electron.OnBeforeRequestDetails`.
@@ -27,14 +28,24 @@ export function fromElectronDetails(
   details: Electron.OnHeadersReceivedListenerDetails | Electron.OnBeforeRequestListenerDetails,
 ): Request {
   const { id, url, resourceType, referrer, webContentsId } = details;
-  return Request.fromRawDetails({
-    _originalRequestDetails: details,
-    requestId: `${id}`,
-    sourceUrl: referrer,
-    tabId: webContentsId,
-    type: (resourceType || 'other') as ElectronRequestType,
-    url,
-  });
+  return Request.fromRawDetails(
+    webContentsId
+      ? {
+          _originalRequestDetails: details,
+          requestId: `${id}`,
+          sourceUrl: referrer,
+          tabId: webContentsId,
+          type: (resourceType || 'other') as ElectronRequestType,
+          url,
+        }
+      : {
+          _originalRequestDetails: details,
+          requestId: `${id}`,
+          sourceUrl: referrer,
+          type: (resourceType || 'other') as ElectronRequestType,
+          url,
+        },
+  );
 }
 
 /**
@@ -70,15 +81,15 @@ export class BlockingContext {
   }
 
   public enable(): void {
+    if (this.blocker.config.loadCosmeticFilters === true) {
+      this.session.setPreloads(this.session.getPreloads().concat([PRELOAD_PATH]));
+      ipcMain.on('get-cosmetic-filters', this.onGetCosmeticFilters);
+      ipcMain.on('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
+    }
+
     if (this.blocker.config.loadNetworkFilters === true) {
       this.session.webRequest.onHeadersReceived({ urls: ['<all_urls>'] }, this.onHeadersReceived);
       this.session.webRequest.onBeforeRequest({ urls: ['<all_urls>'] }, this.onBeforeRequest);
-    }
-
-    if (this.blocker.config.loadCosmeticFilters === true) {
-      ipcMain.on('get-cosmetic-filters', this.onGetCosmeticFilters);
-      ipcMain.on('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
-      this.session.setPreloads(this.session.getPreloads().concat([PRELOAD_PATH]));
     }
   }
 
@@ -99,7 +110,6 @@ export class BlockingContext {
     if (this.blocker.config.loadCosmeticFilters === true) {
       this.session.setPreloads(this.session.getPreloads().filter((p) => p !== PRELOAD_PATH));
       ipcMain.removeListener('get-cosmetic-filters', this.onGetCosmeticFilters);
-      ipcMain.removeListener('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
     }
   }
 }
@@ -161,7 +171,7 @@ export class ElectronBlocker extends FiltersEngine {
     const hostname = parsed.hostname || '';
     const domain = parsed.domain || '';
 
-    const { active, styles, scripts } = this.getCosmeticsFilters({
+    const { active, styles, scripts, extended } = this.getCosmeticsFilters({
       domain,
       hostname,
       url,
@@ -173,6 +183,7 @@ export class ElectronBlocker extends FiltersEngine {
       // This needs to be done only once per frame
       getBaseRules: msg.lifecycle === 'start',
       getInjectionRules: msg.lifecycle === 'start',
+      getExtendedRules: msg.lifecycle === 'start',
       getRulesFromHostname: msg.lifecycle === 'start',
 
       // This will be done every time we get information about DOM mutation
@@ -186,11 +197,16 @@ export class ElectronBlocker extends FiltersEngine {
     // Inject custom stylesheets
     this.injectStyles(event.sender, styles);
 
+    // Inject scriptlets
+    for (const script of scripts) {
+      this.injectScripts(event.sender, script);
+    }
+
     // Inject scripts from content script
     event.sender.send('get-cosmetic-filters-response', {
       active,
-      extended: [],
-      scripts,
+      extended,
+      scripts: [],
       styles: '',
     } as IMessageFromBackground);
   };
@@ -250,6 +266,10 @@ export class ElectronBlocker extends FiltersEngine {
       callback({});
     }
   };
+
+  private injectScripts(sender: Electron.WebContents, script: string): void {
+    sender.executeJavaScript(script);
+  }
 
   private injectStyles(sender: Electron.WebContents, styles: string): void {
     if (styles.length > 0) {

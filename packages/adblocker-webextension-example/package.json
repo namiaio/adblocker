@@ -1,7 +1,7 @@
 {
   "name": "@cliqz/adblocker-webextension-example",
   "private": true,
-  "version": "1.19.0",
+  "version": "1.25.0",
   "description": "Example of WebExtension adblocker using Cliqz",
   "author": {
     "name": "Cliqz"
@@ -32,20 +32,20 @@
     "url": "https://github.com/cliqz-oss/adblocker/issues"
   },
   "dependencies": {
-    "@cliqz/adblocker-webextension": "^1.19.0",
-    "@cliqz/adblocker-webextension-cosmetics": "^1.19.0",
-    "webextension-polyfill-ts": "^0.22.0"
+    "@cliqz/adblocker-webextension": "^1.25.0",
+    "@cliqz/adblocker-webextension-cosmetics": "^1.25.0",
+    "webextension-polyfill-ts": "^0.26.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "@types/chrome": "^0.0.128",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@types/chrome": "^0.0.195",
     "rimraf": "^3.0.0",
-    "rollup": "^2.0.0",
+    "rollup": "^2.57.0",
     "rollup-plugin-sourcemaps": "^0.6.1",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.1.2"
+    "typescript": "^4.4.3"
   },
   "contributors": [
     {

@@ -1,12 +1,12 @@
 /*!
- * Copyright (c) 2017-2019 Cliqz GmbH. All rights reserved.
+ * Copyright (c) 2017-present Cliqz GmbH. All rights reserved.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { ipcRenderer, webFrame } from 'electron';
+import { ipcRenderer } from 'electron';
 
 import { DOMMonitor, IBackgroundCallback, IMessageFromBackground } from '@cliqz/adblocker-content';
 
@@ -32,7 +32,11 @@ if (window === window.top && window.location.href.startsWith('devtools://') === 
 
     ipcRenderer.on(
       'get-cosmetic-filters-response',
-      (_: Electron.IpcRendererEvent, { active, scripts }: IMessageFromBackground) => {
+      // TODO - implement extended filtering for Electron
+      (
+        _: Electron.IpcRendererEvent,
+        { active /* , scripts, extended */ }: IMessageFromBackground,
+      ) => {
         if (active === false) {
           ACTIVE = false;
           unload();
@@ -40,9 +44,6 @@ if (window === window.top && window.location.href.startsWith('devtools://') === 
         }
 
         ACTIVE = true;
-        for (const script of scripts) {
-          setTimeout(() => webFrame.executeJavaScript(script), 1);
-        }
       },
     );
 
@@ -56,13 +57,13 @@ if (window === window.top && window.location.href.startsWith('devtools://') === 
     window.addEventListener(
       'DOMContentLoaded',
       () => {
-        DOM_MONITOR = new DOMMonitor(({ classes, ids, hrefs }) => {
-          getCosmeticsFilters({
-            classes,
-            hrefs,
-            ids,
-            lifecycle: 'dom-update',
-          });
+        DOM_MONITOR = new DOMMonitor((update) => {
+          if (update.type === 'features') {
+            getCosmeticsFilters({
+              ...update,
+              lifecycle: 'dom-update',
+            });
+          }
         });
 
         DOM_MONITOR.queryAll(window);

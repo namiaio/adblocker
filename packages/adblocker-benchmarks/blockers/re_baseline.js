@@ -6,12 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const HOSTNAME_RE = /^(?:[^:]+:)(?:\/\/(?:[^\/]*@)?(\[[^\]]*\]|[^:\/]+))?/;
-function extractHostname(url) {
-  const [, hostname] = HOSTNAME_RE.exec(url) || [];
-  return hostname;
-}
-
+const { extractHostname } = require('./utils.js');
 
 module.exports = class Re {
   static parse() {

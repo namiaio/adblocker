@@ -1,10 +1,15 @@
 /*!
- * Copyright (c) 2017-2019 Cliqz GmbH. All rights reserved.
+ * Copyright (c) 2017-present Cliqz GmbH. All rights reserved.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
+
+import type { AST } from '@cliqz/adblocker-extended-selectors';
+
+const SCRIPT_ID = 'cliqz-adblocker-script';
+const IGNORED_TAGS = new Set(['br', 'head', 'link', 'meta', 'script', 'style', 's']);
 
 export type Lifecycle = 'start' | 'dom-update';
 
@@ -19,36 +24,37 @@ export interface IMessageFromBackground {
   active: boolean;
   scripts: string[];
   styles: string;
-  extended: string[];
+  extended: {
+    ast: AST;
+    remove: boolean;
+    attribute?: string | undefined;
+  }[];
 }
 
-export interface DOMElement {
-  href?: string | SVGAnimatedString | null;
-  nodeType?: number;
-  localName?: string;
-  id?: string;
-  classList?: DOMTokenList;
-  querySelectorAll?: ParentNode['querySelectorAll'];
+function isElement(node: Node): node is Element {
+  // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType#node_type_constants
+  return node.nodeType === 1; // Node.ELEMENT_NODE;
 }
 
-export function getDOMElementsFromMutations(mutations: MutationRecord[]): DOMElement[] {
+function getElementsFromMutations(mutations: MutationRecord[]): Element[] {
   // Accumulate all nodes which were updated in `nodes`
-  const nodes: DOMElement[] = [];
+  const elements: Element[] = [];
+
   for (const mutation of mutations) {
     if (mutation.type === 'attributes') {
-      nodes.push(mutation.target);
+      if (isElement(mutation.target)) {
+        elements.push(mutation.target);
+      }
     } else if (mutation.type === 'childList') {
       for (const addedNode of mutation.addedNodes) {
-        nodes.push(addedNode);
-
-        const addedDOMElement: DOMElement = addedNode;
-        if (addedDOMElement.querySelectorAll !== undefined) {
-          nodes.push(...addedDOMElement.querySelectorAll('[id],[class],[href]'));
+        if (isElement(addedNode) && addedNode.id !== SCRIPT_ID) {
+          elements.push(addedNode);
         }
       }
     }
   }
-  return nodes;
+
+  return elements;
 }
 
 /**
@@ -57,45 +63,47 @@ export function getDOMElementsFromMutations(mutations: MutationRecord[]): DOMEle
  * potentially be injected in content-script (e.g.: see PuppeteerBlocker for
  * more details).
  */
-export function extractFeaturesFromDOM(
-  elements: DOMElement[],
-): {
+export function extractFeaturesFromDOM(roots: Element[]): {
   classes: string[];
   hrefs: string[];
   ids: string[];
 } {
-  const ignoredTags = new Set(['br', 'head', 'link', 'meta', 'script', 'style']);
+  // NOTE: This cannot be global as puppeteer needs to be able to serialize this function.
+  const ignoredTags = new Set(['br', 'head', 'link', 'meta', 'script', 'style', 's']);
   const classes: Set<string> = new Set();
   const hrefs: Set<string> = new Set();
   const ids: Set<string> = new Set();
 
-  for (const element of elements) {
-    if (element.nodeType !== 1 /* Node.ELEMENT_NODE */) {
-      continue;
-    }
-
-    if (element.localName !== undefined && ignoredTags.has(element.localName)) {
-      continue;
-    }
-
-    // Update ids
-    const id = element.id;
-    if (id) {
-      ids.add(id);
-    }
-
-    // Update classes
-    const classList = element.classList;
-    if (classList) {
-      for (const cls of classList) {
-        classes.add(cls);
+  for (const root of roots) {
+    for (const element of [
+      root,
+      ...root.querySelectorAll(
+        '[id]:not(html):not(body),[class]:not(html):not(body),[href]:not(html):not(body)',
+      ),
+    ]) {
+      if (ignoredTags.has(element.nodeName.toLowerCase())) {
+        continue;
       }
-    }
 
-    // Update href
-    const href = element.href;
-    if (typeof href === 'string') {
-      hrefs.add(href);
+      // Update ids
+      const id = element.id;
+      if (id) {
+        ids.add(id);
+      }
+
+      // Update classes
+      const classList = element.classList;
+      if (classList) {
+        for (const cls of classList) {
+          classes.add(cls);
+        }
+      }
+
+      // Update href
+      const href = element.getAttribute('href');
+      if (typeof href === 'string') {
+        hrefs.add(href);
+      }
     }
   }
 
@@ -106,6 +114,20 @@ export function extractFeaturesFromDOM(
   };
 }
 
+export interface FeaturesUpdate {
+  type: 'features';
+  ids: string[];
+  classes: string[];
+  hrefs: string[];
+}
+
+export interface ElementsUpdate {
+  type: 'elements';
+  elements: Element[];
+}
+
+export type DOMUpdate = FeaturesUpdate | ElementsUpdate;
+
 export class DOMMonitor {
   private knownIds: Set<string> = new Set();
   private knownHrefs: Set<string> = new Set();
@@ -113,24 +135,25 @@ export class DOMMonitor {
 
   private observer: MutationObserver | null = null;
 
-  constructor(
-    private readonly cb: (features: { ids: string[]; classes: string[]; hrefs: string[] }) => void,
-  ) {}
+  constructor(private readonly cb: (update: DOMUpdate) => void) {}
 
   public queryAll(window: Pick<Window, 'document'>): void {
-    this.handleNewNodes(Array.from(window.document.querySelectorAll('[id],[class],[href]')));
+    this.cb({ type: 'elements', elements: [window.document.documentElement] });
+    this.handleUpdatedNodes([window.document.documentElement]);
   }
+
   public start(
     window: Pick<Window, 'document'> & { MutationObserver?: typeof MutationObserver },
   ): void {
     if (this.observer === null && window.MutationObserver !== undefined) {
       this.observer = new window.MutationObserver((mutations: MutationRecord[]) => {
-        this.handleNewNodes(getDOMElementsFromMutations(mutations));
+        this.handleUpdatedNodes(getElementsFromMutations(mutations));
       });
 
       this.observer.observe(window.document.documentElement, {
-        attributeFilter: ['class', 'id', 'href'],
+        // Monitor some attributes
         attributes: true,
+        attributeFilter: ['class', 'id', 'href'],
         childList: true,
         subtree: true,
       });
@@ -181,6 +204,7 @@ export class DOMMonitor {
 
     if (newIds.length !== 0 || newClasses.length !== 0 || newHrefs.length !== 0) {
       this.cb({
+        type: 'features',
         classes: newClasses,
         hrefs: newHrefs,
         ids: newIds,
@@ -191,8 +215,16 @@ export class DOMMonitor {
     return false;
   }
 
-  private handleNewNodes(nodes: DOMElement[]): boolean {
-    return this.handleNewFeatures(extractFeaturesFromDOM(nodes));
+  private handleUpdatedNodes(elements: Element[]): boolean {
+    if (elements.length !== 0) {
+      this.cb({
+        type: 'elements',
+        elements: elements.filter((e) => IGNORED_TAGS.has(e.nodeName.toLowerCase()) === false),
+      });
+      return this.handleNewFeatures(extractFeaturesFromDOM(elements));
+    }
+
+    return false;
   }
 }
 
@@ -220,21 +252,10 @@ export function autoRemoveScript(script: string): string {
   //    })();
 }
 
-export function injectCSSRule(rule: string, doc: Document): void {
-  const parent = doc.head || doc.getElementsByTagName('head')[0] || doc.documentElement;
-  if (parent !== null) {
-    const css = doc.createElement('style');
-    css.type = 'text/css';
-    css.id = 'cliqz-adblokcer-css-rules';
-    css.appendChild(doc.createTextNode(rule));
-    parent.appendChild(css);
-  }
-}
-
 export function injectScript(s: string, doc: Document): void {
   const script = doc.createElement('script');
   script.type = 'text/javascript';
-  script.id = 'cliqz-adblocker-script';
+  script.id = SCRIPT_ID;
   script.async = false;
   script.appendChild(doc.createTextNode(autoRemoveScript(s)));
 

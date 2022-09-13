@@ -171,6 +171,7 @@ const FROM_ANY: number =
 const REQUEST_TYPE_TO_MASK: { [s in RequestType]: number | undefined } = {
   beacon: NETWORK_FILTER_MASK.fromPing, // fromOther?
   document: NETWORK_FILTER_MASK.fromDocument,
+  cspviolationreport: NETWORK_FILTER_MASK.fromOther,
   fetch: NETWORK_FILTER_MASK.fromXmlHttpRequest,
   font: NETWORK_FILTER_MASK.fromFont,
   image: NETWORK_FILTER_MASK.fromImage,
@@ -185,15 +186,19 @@ const REQUEST_TYPE_TO_MASK: { [s in RequestType]: number | undefined } = {
   stylesheet: NETWORK_FILTER_MASK.fromStylesheet,
   subFrame: NETWORK_FILTER_MASK.fromSubdocument,
   sub_frame: NETWORK_FILTER_MASK.fromSubdocument,
+  webSocket: NETWORK_FILTER_MASK.fromWebsocket,
   websocket: NETWORK_FILTER_MASK.fromWebsocket,
   xhr: NETWORK_FILTER_MASK.fromXmlHttpRequest,
   xmlhttprequest: NETWORK_FILTER_MASK.fromXmlHttpRequest,
 
   // Other
   csp_report: NETWORK_FILTER_MASK.fromOther,
+  cspReport: NETWORK_FILTER_MASK.fromOther,
   eventsource: NETWORK_FILTER_MASK.fromOther,
   manifest: NETWORK_FILTER_MASK.fromOther,
   other: NETWORK_FILTER_MASK.fromOther,
+  preflight: NETWORK_FILTER_MASK.fromOther,
+  signedexchange: NETWORK_FILTER_MASK.fromOther,
   speculative: NETWORK_FILTER_MASK.fromOther,
   texttrack: NETWORK_FILTER_MASK.fromOther,
   web_manifest: NETWORK_FILTER_MASK.fromOther,
@@ -1298,7 +1303,7 @@ export default class NetworkFilter implements IFilter {
     // Get tokens from filter
     if (this.isFullRegex() === false) {
       if (this.filter !== undefined) {
-        const skipLastToken = this.isPlain() && !this.isRightAnchor();
+        const skipLastToken = !this.isRightAnchor();
         const skipFirstToken = !this.isLeftAnchor();
         tokenizeWithWildcardsInPlace(this.filter, skipFirstToken, skipLastToken, TOKENS_BUFFER);
       }

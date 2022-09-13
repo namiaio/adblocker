@@ -1,12 +1,12 @@
 /*!
- * Copyright (c) 2017-2019 Cliqz GmbH. All rights reserved.
+ * Copyright (c) 2017-present Cliqz GmbH. All rights reserved.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { Browser, Runtime, WebRequest } from 'webextension-polyfill-ts';
+import { Browser, Runtime, WebRequest, WebNavigation } from 'webextension-polyfill-ts';
 import { parse } from 'tldts-experimental';
 
 import {
@@ -37,18 +37,65 @@ type StreamFilter = WebRequest.StreamFilter & {
   onerror: (event: any) => void;
 };
 
+function isFirefox() {
+  try {
+    return navigator.userAgent.indexOf('Firefox') !== -1;
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
+ * There are different ways to inject scriptlets ("push" vs "pull").
+ * This function should decide based on the environment what to use:
+ *
+ * 1) "Pushing" means the adblocker will listen on "onCommitted" events
+ *    and then execute scripts by running the tabs.executeScript API.
+ * 2) "Pulling" means the adblocker will inject a content script, which
+ *    runs before the page loads (and on the DOM changes), fetches
+ *    scriplets from the background and runs them.
+ *
+ * Note:
+ * - the "push" model requires permission to the webNavigation API.
+ *   If that is not available, the implementation will fall back to the
+ *   "pull" model, which does not have this requirement.
+ */
+function usePushScriptsInjection() {
+  // There is no fundamental reason why it should not work on Firefox,
+  // but given that there are no known issues with Firefox, let's keep
+  // the old, proven technique until there is evidence that changes
+  // are needed.
+  //
+  // Take YouTube as an example: on Chrome (or forks like Edge), the adblocker
+  // will sometimes fail to block ads if you reload the page multiple times;
+  // on Firefox, the same steps do not seem to trigger any ads.
+  return !isFirefox();
+}
+const USE_PUSH_SCRIPTS_INJECTION = usePushScriptsInjection();
+
 /**
  * Create an instance of `Request` from WebRequest details.
  */
 export function fromWebRequestDetails(details: OnBeforeRequestDetailsType): Request {
-  return Request.fromRawDetails({
-    _originalRequestDetails: details,
-    requestId: details.requestId,
-    sourceUrl: details.initiator || details.originUrl || details.documentUrl,
-    tabId: details.tabId,
-    type: details.type,
-    url: details.url,
-  });
+  const sourceUrl = details.initiator || details.originUrl || details.documentUrl;
+  return Request.fromRawDetails(
+    sourceUrl
+      ? {
+          _originalRequestDetails: details,
+          requestId: details.requestId,
+          sourceUrl,
+          tabId: details.tabId,
+          type: details.type,
+          url: details.url,
+        }
+      : {
+          _originalRequestDetails: details,
+          requestId: details.requestId,
+          tabId: details.tabId,
+          type: details.type,
+          url: details.url,
+        },
+  );
 }
 
 /**
@@ -164,10 +211,28 @@ export class BlockingContext {
     sender: Runtime.MessageSender,
   ) => Promise<IMessageFromBackground | undefined>;
 
+  private readonly onCommittedHandler:
+    | ((details: WebNavigation.OnCommittedDetailsType) => void)
+    | undefined;
+
   constructor(private readonly browser: Browser, private readonly blocker: WebExtensionBlocker) {
     this.onBeforeRequest = (details) => blocker.onBeforeRequest(browser, details);
     this.onHeadersReceived = (details) => blocker.onHeadersReceived(browser, details);
     this.onRuntimeMessage = (msg, sender) => blocker.onRuntimeMessage(browser, msg, sender);
+
+    if (
+      this.blocker.config.enablePushInjectionsOnNavigationEvents === true &&
+      USE_PUSH_SCRIPTS_INJECTION
+    ) {
+      if (this.browser.webNavigation?.onCommitted) {
+        this.onCommittedHandler = (details) => blocker.onCommittedHandler(browser, details);
+      } else {
+        console.warn(
+          'Consider adding the "webNavigation" permission in the manifest to improve the reliability of the adblocker. ' +
+          'If you do not want to see this warning, turn off the "enablePushInjectionsOnNavigationEvents" flag.',
+        );
+      }
+    }
   }
 
   public enable() {
@@ -193,6 +258,10 @@ export class BlockingContext {
     ) {
       this.browser.runtime.onMessage.addListener(this.onRuntimeMessage);
     }
+
+    if (this.onCommittedHandler) {
+      this.browser.webNavigation.onCommitted.addListener(this.onCommittedHandler);
+    }
   }
 
   public disable(): void {
@@ -204,6 +273,14 @@ export class BlockingContext {
     if (this.browser.runtime !== undefined && this.browser.runtime.onMessage !== undefined) {
       this.browser.runtime.onMessage.removeListener(this.onRuntimeMessage);
     }
+
+    if (this.onCommittedHandler) {
+      this.browser.webNavigation.onCommitted.removeListener(this.onCommittedHandler);
+    }
+  }
+
+  get pushInjectionsActive() {
+    return this.onCommittedHandler !== undefined;
   }
 }
 
@@ -242,8 +319,52 @@ export class WebExtensionBlocker extends FiltersEngine {
     context.disable();
   }
 
+  public onCommittedHandler(
+    browser: Browser,
+    details: WebNavigation.OnCommittedDetailsType,
+  ): void {
+    const { hostname, domain } = parse(details.url);
+    if (!hostname) {
+      return;
+    }
+
+    // Find the scriptlets to run and execute them as soon as possible.
+    //
+    // If possible, everything in this path should be kept synchronously,
+    // since the scriptlets will attempt to patch the website while it is
+    // already loading. Every additional asynchronous step increases the risk
+    // of losing the race (i.e. that the patching is too late to have an effect)
+    const { active, scripts } = this.getCosmeticsFilters({
+      url: details.url,
+      hostname,
+      domain: domain || '',
+
+      getBaseRules: false,
+      getInjectionRules: true,
+      getExtendedRules: false,
+      getRulesFromDOM: false,
+      getRulesFromHostname: true,
+    });
+    if (active === false) {
+      return;
+    }
+    if (scripts.length > 0) {
+      this.executeScriptlets(browser, details.tabId, scripts);
+    }
+  }
+
   public isBlockingEnabled(browser: Browser): boolean {
     return this.contexts.has(browser);
+  }
+
+  private pushInjectionsActive(browser: Browser): boolean {
+    const context = this.contexts.get(browser);
+    if (!context) {
+      // This means the browser instance is not controlled by the library directly.
+      // For instance, if there is another wrapping layer on top (e.g. Ghostery).
+      return false;
+    }
+    return context.pushInjectionsActive;
   }
 
   // ----------------------------------------------------------------------- //
@@ -291,6 +412,12 @@ export class WebExtensionBlocker extends FiltersEngine {
   ): Promise<void> => {
     const promises: Promise<void>[] = [];
 
+    // Make sure we only listen to messages coming from our content-script
+    // based on the value of `action`.
+    if (msg.action !== 'getCosmeticsFilters') {
+      return;
+    }
+
     if (sender.tab === undefined) {
       throw new Error('required "sender.tab" information is not available');
     }
@@ -303,90 +430,88 @@ export class WebExtensionBlocker extends FiltersEngine {
       throw new Error('required "sender.frameId" information is not available');
     }
 
-    // Make sure we only listen to messages coming from our content-script
-    // based on the value of `action`.
-    if (msg.action === 'getCosmeticsFilters') {
-      // Extract hostname from sender's URL
-      const { url = '', frameId } = sender;
-      const parsed = parse(url);
-      const hostname = parsed.hostname || '';
-      const domain = parsed.domain || '';
+    // Extract hostname from sender's URL
+    const { url = '', frameId } = sender;
+    const parsed = parse(url);
+    const hostname = parsed.hostname || '';
+    const domain = parsed.domain || '';
 
-      // Once per tab/page load we inject base stylesheets. These are always
-      // the same for all frames of a given page because they do not depend on
-      // a particular domain and cannot be cancelled using unhide rules.
-      // Because of this, we specify `allFrames: true` when injecting them so
-      // that we do not need to perform this operation for sub-frames.
-      if (frameId === 0 && msg.lifecycle === 'start') {
-        const { active, styles } = this.getCosmeticsFilters({
-          domain,
-          hostname,
-          url,
+    // Once per tab/page load we inject base stylesheets. These are always
+    // the same for all frames of a given page because they do not depend on
+    // a particular domain and cannot be cancelled using unhide rules.
+    // Because of this, we specify `allFrames: true` when injecting them so
+    // that we do not need to perform this operation for sub-frames.
+    if (frameId === 0 && msg.lifecycle === 'start') {
+      const { active, styles } = this.getCosmeticsFilters({
+        domain,
+        hostname,
+        url,
 
-          classes: msg.classes,
-          hrefs: msg.hrefs,
-          ids: msg.ids,
+        classes: msg.classes,
+        hrefs: msg.hrefs,
+        ids: msg.ids,
 
-          // This needs to be done only once per tab
-          getBaseRules: true,
-          getInjectionRules: false,
-          getRulesFromDOM: false,
-          getRulesFromHostname: false,
-        });
+        // This needs to be done only once per tab
+        getBaseRules: true,
+        getInjectionRules: false,
+        getExtendedRules: false,
+        getRulesFromDOM: false,
+        getRulesFromHostname: false,
+      });
 
-        if (active === false) {
-          return;
-        }
-
-        promises.push(
-          this.injectStylesWebExtension(browser, styles, {
-            tabId: sender.tab.id,
-            allFrames: true,
-          }),
-        );
+      if (active === false) {
+        return;
       }
 
-      // Separately, requests cosmetics which depend on the page it self
-      // (either because of the hostname or content of the DOM). Content script
-      // logic is responsible for returning information about lists of classes,
-      // ids and hrefs observed in the DOM. MutationObserver is also used to
-      // make sure we can react to changes.
-      {
-        const { active, styles, scripts } = this.getCosmeticsFilters({
-          domain,
-          hostname,
-          url,
+      promises.push(
+        this.injectStylesWebExtension(browser, styles, {
+          tabId: sender.tab.id,
+          allFrames: true,
+        }),
+      );
+    }
 
-          classes: msg.classes,
-          hrefs: msg.hrefs,
-          ids: msg.ids,
+    // Separately, requests cosmetics which depend on the page it self
+    // (either because of the hostname or content of the DOM). Content script
+    // logic is responsible for returning information about lists of classes,
+    // ids and hrefs observed in the DOM. MutationObserver is also used to
+    // make sure we can react to changes.
+    {
+      const { active, styles, scripts, extended } = this.getCosmeticsFilters({
+        domain,
+        hostname,
+        url,
 
-          // This needs to be done only once per frame
-          getBaseRules: false,
-          getInjectionRules: msg.lifecycle === 'start',
-          getRulesFromHostname: msg.lifecycle === 'start',
+        classes: msg.classes,
+        hrefs: msg.hrefs,
+        ids: msg.ids,
 
-          // This will be done every time we get information about DOM mutation
-          getRulesFromDOM: msg.lifecycle === 'dom-update',
+        // This needs to be done only once per frame
+        getBaseRules: false,
+        getInjectionRules: msg.lifecycle === 'start',
+        getExtendedRules: msg.lifecycle === 'start',
+        getRulesFromHostname: msg.lifecycle === 'start',
+
+        // This will be done every time we get information about DOM mutation
+        getRulesFromDOM: msg.lifecycle === 'dom-update',
+      });
+
+      if (active === false) {
+        return;
+      }
+
+      promises.push(
+        this.injectStylesWebExtension(browser, styles, { tabId: sender.tab.id, frameId }),
+      );
+
+      // Inject scripts from content script
+      if (scripts.length !== 0 && !this.pushInjectionsActive(browser)) {
+        sendResponse({
+          active,
+          extended,
+          scripts,
+          styles: '',
         });
-
-        if (active === false) {
-          return;
-        }
-
-        promises.push(
-          this.injectStylesWebExtension(browser, styles, { tabId: sender.tab.id, frameId }),
-        );
-
-        // Inject scripts from content script
-        if (scripts.length !== 0) {
-          sendResponse({
-            active,
-            extended: [],
-            scripts,
-            styles: '',
-          });
-        }
       }
     }
 
@@ -470,13 +595,72 @@ export class WebExtensionBlocker extends FiltersEngine {
     }
 
     // Proceed with stylesheet injection.
-    return browser.tabs.insertCSS(tabId, {
-      allFrames,
-      code: styles,
-      cssOrigin: 'user',
-      frameId,
-      matchAboutBlank: true,
+    return browser.tabs.insertCSS(
+      tabId,
+      frameId
+        ? {
+            allFrames,
+            code: styles,
+            cssOrigin: 'user',
+            frameId,
+            matchAboutBlank: true,
+            runAt: 'document_start',
+          }
+        : {
+            allFrames,
+            code: styles,
+            cssOrigin: 'user',
+            matchAboutBlank: true,
+            runAt: 'document_start',
+          },
+    );
+  }
+
+  private executeScriptlets(browser: Browser, tabId: number, scripts: string[]): void {
+    // Dynamically injected scripts scripts can be difficult to find later in
+    // the debugger. Console logs simplifies setting up breakpoints if needed.
+    let debugMarker;
+    if (this.config.debug) {
+      debugMarker = (text: string) =>
+        `console.log('[ADBLOCKER-DEBUG]:', ${JSON.stringify(text)});`;
+    } else {
+      debugMarker = () => '';
+    }
+
+    // the scriptlet code that contains patches for the website
+    const codeRunningInPage = `(function(){
+${debugMarker('run scriptlets (executing in "page world")')}
+${scripts.join('\n\n')}}
+)()`;
+
+    // wrapper to break the "isolated world" so that the patching operates
+    // on the website, not on the content script's isolated environment.
+    const codeRunningInContentScript = `
+(function(code) {
+    ${debugMarker('run injection wrapper (executing in "content script world")')}
+    var script;
+    try {
+      script = document.createElement('script');
+      script.appendChild(document.createTextNode(decodeURIComponent(code)));
+      (document.head || document.documentElement).appendChild(script);
+    } catch (ex) {
+      console.error('Failed to run script', ex);
+    }
+    if (script) {
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
+        script.textContent = '';
+    }
+})(\`${encodeURIComponent(codeRunningInPage)}\`);`;
+
+    browser.tabs.executeScript(tabId, {
+      code: codeRunningInContentScript,
       runAt: 'document_start',
+      allFrames: true,
+      matchAboutBlank: true,
+    }).catch((err) => {
+      console.error('Failed to inject scriptlets', err);
     });
   }
 }

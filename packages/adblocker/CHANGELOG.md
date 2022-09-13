@@ -1,3 +1,745 @@
+# v1.25.0 (Tue Aug 30 2022)
+
+#### :rocket: New Feature
+
+- New option "enablePushInjectionsOnNavigationEvents" [#2750](https://github.com/ghostery/adblocker/pull/2750) ([@philipp-classen](https://github.com/philipp-classen))
+
+#### :house: Internal
+
+- Update local assets [#2787](https://github.com/ghostery/adblocker/pull/2787) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2785](https://github.com/ghostery/adblocker/pull/2785) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+
+#### :nut_and_bolt: Dependencies
+
+- Build(deps): Bump @types/chrome from 0.0.193 to 0.0.195 [#2773](https://github.com/ghostery/adblocker/pull/2773) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot])
+- Ghostery Adblocker Bot (ghostery-adblocker-bot@users.noreply.github.com)
+- Philipp Claßen ([@philipp-classen](https://github.com/philipp-classen))
+
+---
+
+# v1.24.0 (Fri Aug 26 2022)
+
+#### :house: Internal
+
+- Update local assets [#2783](https://github.com/ghostery/adblocker/pull/2783) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+
+#### Authors: 2
+
+- [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot])
+- Ghostery Adblocker Bot (ghostery-adblocker-bot@users.noreply.github.com)
+
+---
+
+# v1.23.9 (Fri Aug 19 2022)
+
+#### :bug: Bug Fix
+
+- Preserve all information in rawLine (fix for the blank screen in YouTube full screen mode) [#2768](https://github.com/ghostery/adblocker/pull/2768) ([@philipp-classen](https://github.com/philipp-classen))
+
+#### :house: Internal
+
+- Update local assets [#2770](https://github.com/ghostery/adblocker/pull/2770) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Fix generation of compression codebooks [#2767](https://github.com/ghostery/adblocker/pull/2767) ([@remusao](https://github.com/remusao))
+- Update local assets [#2676](https://github.com/ghostery/adblocker/pull/2676) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2671](https://github.com/ghostery/adblocker/pull/2671) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2667](https://github.com/ghostery/adblocker/pull/2667) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2656](https://github.com/ghostery/adblocker/pull/2656) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2655](https://github.com/ghostery/adblocker/pull/2655) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2642](https://github.com/ghostery/adblocker/pull/2642) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2632](https://github.com/ghostery/adblocker/pull/2632) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2628](https://github.com/ghostery/adblocker/pull/2628) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Revert "Build(deps-dev): Bump got from 11.8.3 to 12.0.4" [#2627](https://github.com/ghostery/adblocker/pull/2627) ([@remusao](https://github.com/remusao))
+- Update local assets [#2604](https://github.com/ghostery/adblocker/pull/2604) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+
+#### :nut_and_bolt: Dependencies
+
+- Build(deps): Bump @types/chrome from 0.0.190 to 0.0.193 [#2691](https://github.com/ghostery/adblocker/pull/2691) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Build(deps-dev): Bump @types/node from 17.0.41 to 18.0.0 [#2664](https://github.com/ghostery/adblocker/pull/2664) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Build(deps): Bump @types/chrome from 0.0.188 to 0.0.190 [#2650](https://github.com/ghostery/adblocker/pull/2650) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Build(deps-dev): Bump got from 11.8.3 to 12.0.4 [#2566](https://github.com/ghostery/adblocker/pull/2566) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Build(deps-dev): Bump mocha from 9.2.2 to 10.0.0 [#2582](https://github.com/ghostery/adblocker/pull/2582) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Build(deps): Bump @types/chrome from 0.0.183 to 0.0.188 [#2611](https://github.com/ghostery/adblocker/pull/2611) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 5
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot])
+- Ghostery Adblocker Bot (ghostery-adblocker-bot@users.noreply.github.com)
+- Philipp Claßen ([@philipp-classen](https://github.com/philipp-classen))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.23.8 (Mon May 16 2022)
+
+#### :house: Internal
+
+- Update local assets [#2588](https://github.com/ghostery/adblocker/pull/2588) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2580](https://github.com/ghostery/adblocker/pull/2580) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2573](https://github.com/ghostery/adblocker/pull/2573) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2561](https://github.com/ghostery/adblocker/pull/2561) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2546](https://github.com/ghostery/adblocker/pull/2546) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2542](https://github.com/ghostery/adblocker/pull/2542) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2538](https://github.com/ghostery/adblocker/pull/2538) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2524](https://github.com/ghostery/adblocker/pull/2524) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2517](https://github.com/ghostery/adblocker/pull/2517) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2513](https://github.com/ghostery/adblocker/pull/2513) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+
+#### :nut_and_bolt: Dependencies
+
+- Build(deps): Bump @types/chrome from 0.0.181 to 0.0.183 [#2569](https://github.com/ghostery/adblocker/pull/2569) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Build(deps): Bump @types/chrome from 0.0.180 to 0.0.181 [#2543](https://github.com/ghostery/adblocker/pull/2543) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot])
+- Ghostery Adblocker Bot (ghostery-adblocker-bot@users.noreply.github.com)
+
+---
+
+# v1.23.7 (Wed Mar 23 2022)
+
+#### :house: Internal
+
+- Update local assets [#2509](https://github.com/ghostery/adblocker/pull/2509) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2504](https://github.com/ghostery/adblocker/pull/2504) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2498](https://github.com/ghostery/adblocker/pull/2498) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2482](https://github.com/ghostery/adblocker/pull/2482) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2478](https://github.com/ghostery/adblocker/pull/2478) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2475](https://github.com/ghostery/adblocker/pull/2475) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2462](https://github.com/ghostery/adblocker/pull/2462) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2461](https://github.com/ghostery/adblocker/pull/2461) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2457](https://github.com/ghostery/adblocker/pull/2457) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2450](https://github.com/ghostery/adblocker/pull/2450) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+
+#### :nut_and_bolt: Dependencies
+
+- Build(deps): Bump @types/chrome from 0.0.179 to 0.0.180 [#2503](https://github.com/ghostery/adblocker/pull/2503) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Build(deps): Bump @types/chrome from 0.0.178 to 0.0.179 [#2473](https://github.com/ghostery/adblocker/pull/2473) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot])
+- Ghostery Adblocker Bot (ghostery-adblocker-bot@users.noreply.github.com)
+
+---
+
+# v1.23.6 (Mon Feb 14 2022)
+
+#### :house: Internal
+
+- Update local assets [#2445](https://github.com/ghostery/adblocker/pull/2445) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2440](https://github.com/ghostery/adblocker/pull/2440) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2438](https://github.com/ghostery/adblocker/pull/2438) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2435](https://github.com/ghostery/adblocker/pull/2435) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2429](https://github.com/ghostery/adblocker/pull/2429) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+
+#### Authors: 2
+
+- [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot])
+- Ghostery Adblocker Bot (ghostery-adblocker-bot@users.noreply.github.com)
+
+---
+
+# v1.23.5 (Mon Feb 07 2022)
+
+#### :nail_care: Polish
+
+- Add 2022 ubo list [#2428](https://github.com/ghostery/adblocker/pull/2428) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Update local assets [#2413](https://github.com/ghostery/adblocker/pull/2413) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2407](https://github.com/ghostery/adblocker/pull/2407) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2397](https://github.com/ghostery/adblocker/pull/2397) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2392](https://github.com/ghostery/adblocker/pull/2392) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+- Update local assets [#2381](https://github.com/ghostery/adblocker/pull/2381) (ghostery-adblocker-bot@users.noreply.github.com [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot]))
+
+#### :nut_and_bolt: Dependencies
+
+- Build(deps): Bump @types/chrome from 0.0.177 to 0.0.178 [#2421](https://github.com/ghostery/adblocker/pull/2421) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.176 to 0.0.177 [#2402](https://github.com/ghostery/adblocker/pull/2402) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@ghostery-adblocker-bot[bot]](https://github.com/ghostery-adblocker-bot[bot])
+- Ghostery Adblocker Bot (ghostery-adblocker-bot@users.noreply.github.com)
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.23.4 (Mon Jan 17 2022)
+
+#### :house: Internal
+
+- Update local assets [#2380](https://github.com/ghostery/adblocker/pull/2380) ([@remusao](https://github.com/remusao) [@ghosterey-adblocker-bot[bot]](https://github.com/ghosterey-adblocker-bot[bot]))
+- Update local assets [#2379](https://github.com/ghostery/adblocker/pull/2379) ([@remusao](https://github.com/remusao) [@ghosterey-adblocker-bot[bot]](https://github.com/ghosterey-adblocker-bot[bot]))
+- Update local assets [#2378](https://github.com/ghostery/adblocker/pull/2378) ([@remusao](https://github.com/remusao) [@ghosterey-adblocker-bot[bot]](https://github.com/ghosterey-adblocker-bot[bot]))
+- Update local assets [#2376](https://github.com/ghostery/adblocker/pull/2376) ([@chrmod](https://github.com/chrmod) [@ghosterey-adblocker-bot[bot]](https://github.com/ghosterey-adblocker-bot[bot]))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.175 to 0.0.176 [#2371](https://github.com/ghostery/adblocker/pull/2371) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/node from 16.11.10 to 17.0.8 [#2350](https://github.com/ghostery/adblocker/pull/2350) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump concurrently from 6.4.0 to 7.0.0 [#2363](https://github.com/ghostery/adblocker/pull/2363) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@ghosterey-adblocker-bot[bot]](https://github.com/ghosterey-adblocker-bot[bot])
+- Krzysztof Modras ([@chrmod](https://github.com/chrmod))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.23.3 (Mon Jan 10 2022)
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.164 to 0.0.175 [#2348](https://github.com/ghostery/adblocker/pull/2348) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
+# v1.23.1 (Sat Dec 04 2021)
+
+#### :nail_care: Polish
+
+- Add missing list [#2341](https://github.com/ghostery/adblocker/pull/2341) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Update local assets [#2338](https://github.com/ghostery/adblocker/pull/2338) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2319](https://github.com/ghostery/adblocker/pull/2319) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2312](https://github.com/ghostery/adblocker/pull/2312) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2306](https://github.com/ghostery/adblocker/pull/2306) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2303](https://github.com/ghostery/adblocker/pull/2303) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2300](https://github.com/ghostery/adblocker/pull/2300) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2288](https://github.com/ghostery/adblocker/pull/2288) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2283](https://github.com/ghostery/adblocker/pull/2283) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.163 to 0.0.164 [#2324](https://github.com/ghostery/adblocker/pull/2324) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.162 to 0.0.163 [#2314](https://github.com/ghostery/adblocker/pull/2314) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.161 to 0.0.162 [#2305](https://github.com/ghostery/adblocker/pull/2305) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.159 to 0.0.161 [#2294](https://github.com/ghostery/adblocker/pull/2294) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.23.0 (Mon Oct 18 2021)
+
+#### :house: Internal
+
+- Update local assets [#2278](https://github.com/cliqz-oss/adblocker/pull/2278) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2276](https://github.com/cliqz-oss/adblocker/pull/2276) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2265](https://github.com/cliqz-oss/adblocker/pull/2265) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2253](https://github.com/cliqz-oss/adblocker/pull/2253) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2246](https://github.com/cliqz-oss/adblocker/pull/2246) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2244](https://github.com/cliqz-oss/adblocker/pull/2244) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/firefox-webext-browser from 82.0.1 to 94.0.0 [#2271](https://github.com/cliqz-oss/adblocker/pull/2271) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.158 to 0.0.159 [#2266](https://github.com/cliqz-oss/adblocker/pull/2266) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.157 to 0.0.158 [#2245](https://github.com/cliqz-oss/adblocker/pull/2245) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.22.7 (Wed Sep 22 2021)
+
+#### :nail_care: Polish
+
+- electron: add missing types from https://github.com/electron/electron/pull/29902 [#2241](https://github.com/cliqz-oss/adblocker/pull/2241) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Bump typescript [#2243](https://github.com/cliqz-oss/adblocker/pull/2243) ([@remusao](https://github.com/remusao))
+- Update local assets [#2232](https://github.com/cliqz-oss/adblocker/pull/2232) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2229](https://github.com/cliqz-oss/adblocker/pull/2229) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/node from 15.6.1 to 16.9.6 [#2235](https://github.com/cliqz-oss/adblocker/pull/2235) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.22.6 (Sun Sep 19 2021)
+
+#### :house: Internal
+
+- Update local assets [#2227](https://github.com/cliqz-oss/adblocker/pull/2227) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2212](https://github.com/cliqz-oss/adblocker/pull/2212) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2209](https://github.com/cliqz-oss/adblocker/pull/2209) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2203](https://github.com/cliqz-oss/adblocker/pull/2203) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2195](https://github.com/cliqz-oss/adblocker/pull/2195) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2194](https://github.com/cliqz-oss/adblocker/pull/2194) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2191](https://github.com/cliqz-oss/adblocker/pull/2191) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Run benchmark on each PR [#2193](https://github.com/cliqz-oss/adblocker/pull/2193) ([@remusao](https://github.com/remusao))
+- Update local assets [#2181](https://github.com/cliqz-oss/adblocker/pull/2181) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.155 to 0.0.157 [#2214](https://github.com/cliqz-oss/adblocker/pull/2214) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.154 to 0.0.155 [#2211](https://github.com/cliqz-oss/adblocker/pull/2211) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.22.5 (Wed Aug 25 2021)
+
+#### :bug: Bug Fix
+
+- Always skip last token unless anchored [#2187](https://github.com/cliqz-oss/adblocker/pull/2187) ([@mjethani](https://github.com/mjethani))
+
+#### :house: Internal
+
+- Update local assets [#2173](https://github.com/cliqz-oss/adblocker/pull/2173) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2166](https://github.com/cliqz-oss/adblocker/pull/2166) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2155](https://github.com/cliqz-oss/adblocker/pull/2155) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2131](https://github.com/cliqz-oss/adblocker/pull/2131) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2130](https://github.com/cliqz-oss/adblocker/pull/2130) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2129](https://github.com/cliqz-oss/adblocker/pull/2129) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2120](https://github.com/cliqz-oss/adblocker/pull/2120) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2111](https://github.com/cliqz-oss/adblocker/pull/2111) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.153 to 0.0.154 [#2118](https://github.com/cliqz-oss/adblocker/pull/2118) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Manish Jethani ([@mjethani](https://github.com/mjethani))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.22.4 (Wed Aug 04 2021)
+
+#### :house: Internal
+
+- Update local assets [#2102](https://github.com/cliqz-oss/adblocker/pull/2102) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2094](https://github.com/cliqz-oss/adblocker/pull/2094) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2088](https://github.com/cliqz-oss/adblocker/pull/2088) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2082](https://github.com/cliqz-oss/adblocker/pull/2082) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.149 to 0.0.153 [#2107](https://github.com/cliqz-oss/adblocker/pull/2107) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.22.3 (Thu Jul 29 2021)
+
+#### :house: Internal
+
+- Update local assets [#2077](https://github.com/cliqz-oss/adblocker/pull/2077) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2067](https://github.com/cliqz-oss/adblocker/pull/2067) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2056](https://github.com/cliqz-oss/adblocker/pull/2056) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2050](https://github.com/cliqz-oss/adblocker/pull/2050) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2048](https://github.com/cliqz-oss/adblocker/pull/2048) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2026](https://github.com/cliqz-oss/adblocker/pull/2026) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2013](https://github.com/cliqz-oss/adblocker/pull/2013) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#2007](https://github.com/cliqz-oss/adblocker/pull/2007) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1998](https://github.com/cliqz-oss/adblocker/pull/1998) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.148 to 0.0.149 [#2078](https://github.com/cliqz-oss/adblocker/pull/2078) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/mocha from 8.2.3 to 9.0.0 [#2062](https://github.com/cliqz-oss/adblocker/pull/2062) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.146 to 0.0.148 [#2058](https://github.com/cliqz-oss/adblocker/pull/2058) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.145 to 0.0.146 [#2037](https://github.com/cliqz-oss/adblocker/pull/2037) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.22.2 (Sun Jun 20 2021)
+
+#### :house: Internal
+
+- Update local assets [#1990](https://github.com/cliqz-oss/adblocker/pull/1990) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1987](https://github.com/cliqz-oss/adblocker/pull/1987) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1982](https://github.com/cliqz-oss/adblocker/pull/1982) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1981](https://github.com/cliqz-oss/adblocker/pull/1981) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1980](https://github.com/cliqz-oss/adblocker/pull/1980) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.144 to 0.0.145 [#1995](https://github.com/cliqz-oss/adblocker/pull/1995) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump mocha from 8.4.0 to 9.0.0 [#1989](https://github.com/cliqz-oss/adblocker/pull/1989) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.22.1 (Thu Jun 03 2021)
+
+#### :house: Internal
+
+- Update local assets [#1971](https://github.com/cliqz-oss/adblocker/pull/1971) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1970](https://github.com/cliqz-oss/adblocker/pull/1970) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1968](https://github.com/cliqz-oss/adblocker/pull/1968) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.143 to 0.0.144 [#1972](https://github.com/cliqz-oss/adblocker/pull/1972) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.21.0 (Sun May 30 2021)
+
+#### :rocket: New Feature
+
+- Bump Electron to v13.x and Puppeteer to v9.x [#1967](https://github.com/cliqz-oss/adblocker/pull/1967) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Update local assets [#1945](https://github.com/cliqz-oss/adblocker/pull/1945) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1943](https://github.com/cliqz-oss/adblocker/pull/1943) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1933](https://github.com/cliqz-oss/adblocker/pull/1933) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1929](https://github.com/cliqz-oss/adblocker/pull/1929) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1926](https://github.com/cliqz-oss/adblocker/pull/1926) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1923](https://github.com/cliqz-oss/adblocker/pull/1923) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Bump lock file to fix some security issue [#1922](https://github.com/cliqz-oss/adblocker/pull/1922) ([@remusao](https://github.com/remusao))
+- Update local assets [#1907](https://github.com/cliqz-oss/adblocker/pull/1907) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- Bump @types/chrome from 0.0.139 to 0.0.141 [#1939](https://github.com/cliqz-oss/adblocker/pull/1939) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.138 to 0.0.139 [#1927](https://github.com/cliqz-oss/adblocker/pull/1927) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.137 to 0.0.138 [#1925](https://github.com/cliqz-oss/adblocker/pull/1925) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @rollup/plugin-node-resolve from 11.2.1 to 13.0.0 [#1912](https://github.com/cliqz-oss/adblocker/pull/1912) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @types/chrome from 0.0.136 to 0.0.137 [#1911](https://github.com/cliqz-oss/adblocker/pull/1911) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.20.5 (Tue May 04 2021)
+
+#### :bug: Bug Fix
+
+- build(deps): bump @types/chrome from 0.0.135 to 0.0.136 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump @types/node from 14.14.41 to 15.0.0 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.134 to 0.0.135 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.133 to 0.0.134 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### :house: Internal
+
+- Update local assets [#1886](https://github.com/cliqz-oss/adblocker/pull/1886) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1884](https://github.com/cliqz-oss/adblocker/pull/1884) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1882](https://github.com/cliqz-oss/adblocker/pull/1882) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1880](https://github.com/cliqz-oss/adblocker/pull/1880) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1872](https://github.com/cliqz-oss/adblocker/pull/1872) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1868](https://github.com/cliqz-oss/adblocker/pull/1868) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1866](https://github.com/cliqz-oss/adblocker/pull/1866) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1862](https://github.com/cliqz-oss/adblocker/pull/1862) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1861](https://github.com/cliqz-oss/adblocker/pull/1861) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1859](https://github.com/cliqz-oss/adblocker/pull/1859) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1857](https://github.com/cliqz-oss/adblocker/pull/1857) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1853](https://github.com/cliqz-oss/adblocker/pull/1853) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1850](https://github.com/cliqz-oss/adblocker/pull/1850) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1847](https://github.com/cliqz-oss/adblocker/pull/1847) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1845](https://github.com/cliqz-oss/adblocker/pull/1845) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1843](https://github.com/cliqz-oss/adblocker/pull/1843) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1836](https://github.com/cliqz-oss/adblocker/pull/1836) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1830](https://github.com/cliqz-oss/adblocker/pull/1830) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1829](https://github.com/cliqz-oss/adblocker/pull/1829) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1827](https://github.com/cliqz-oss/adblocker/pull/1827) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1824](https://github.com/cliqz-oss/adblocker/pull/1824) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1822](https://github.com/cliqz-oss/adblocker/pull/1822) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1818](https://github.com/cliqz-oss/adblocker/pull/1818) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1813](https://github.com/cliqz-oss/adblocker/pull/1813) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1807](https://github.com/cliqz-oss/adblocker/pull/1807) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- build(deps): bump @types/chrome from 0.0.135 to 0.0.136 [#1899](https://github.com/cliqz-oss/adblocker/pull/1899) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump auto from 10.25.1 to 10.25.2 [#1892](https://github.com/cliqz-oss/adblocker/pull/1892) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump tldts-experimental from 5.7.29 to 5.7.30 [#1889](https://github.com/cliqz-oss/adblocker/pull/1889) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump @types/node from 14.14.41 to 15.0.0 [#1888](https://github.com/cliqz-oss/adblocker/pull/1888) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump @types/chai from 4.2.16 to 4.2.17 [#1887](https://github.com/cliqz-oss/adblocker/pull/1887) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump auto from 10.25.0 to 10.25.1 [#1877](https://github.com/cliqz-oss/adblocker/pull/1877) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.134 to 0.0.135 [#1876](https://github.com/cliqz-oss/adblocker/pull/1876) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.133 to 0.0.134 [#1838](https://github.com/cliqz-oss/adblocker/pull/1838) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.20.4 (Thu Mar 25 2021)
+
+#### :bug: Bug Fix
+
+- Fix request partiness identification when type is main_frame [#1805](https://github.com/cliqz-oss/adblocker/pull/1805) ([@eugenioemmolo](https://github.com/eugenioemmolo))
+
+#### :house: Internal
+
+- Update local assets [#1803](https://github.com/cliqz-oss/adblocker/pull/1803) ([@cliqz-oss](https://github.com/cliqz-oss) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1800](https://github.com/cliqz-oss/adblocker/pull/1800) ([@cliqz-oss](https://github.com/cliqz-oss) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1787](https://github.com/cliqz-oss/adblocker/pull/1787) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1775](https://github.com/cliqz-oss/adblocker/pull/1775) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1753](https://github.com/cliqz-oss/adblocker/pull/1753) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1750](https://github.com/cliqz-oss/adblocker/pull/1750) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1748](https://github.com/cliqz-oss/adblocker/pull/1748) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1743](https://github.com/cliqz-oss/adblocker/pull/1743) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1727](https://github.com/cliqz-oss/adblocker/pull/1727) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1722](https://github.com/cliqz-oss/adblocker/pull/1722) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1720](https://github.com/cliqz-oss/adblocker/pull/1720) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1719](https://github.com/cliqz-oss/adblocker/pull/1719) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### Authors: 4
+
+- [@eugenioemmolo](https://github.com/eugenioemmolo)
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Cliqz Open Source ([@cliqz-oss](https://github.com/cliqz-oss))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.20.3 (Sat Feb 27 2021)
+
+#### :bug: Bug Fix
+
+- build(deps): bump @types/chrome from 0.0.132 to 0.0.133 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump concurrently from 5.3.0 to 6.0.0 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.131 to 0.0.132 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.130 to 0.0.131 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### :nail_care: Polish
+
+- Add support for Puppeteer v8.x [#1716](https://github.com/cliqz-oss/adblocker/pull/1716) ([@remusao](https://github.com/remusao))
+
+#### :house: Internal
+
+- Update local assets [#1718](https://github.com/cliqz-oss/adblocker/pull/1718) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update copyright notices [#1715](https://github.com/cliqz-oss/adblocker/pull/1715) ([@remusao](https://github.com/remusao))
+- Update local assets [#1712](https://github.com/cliqz-oss/adblocker/pull/1712) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1708](https://github.com/cliqz-oss/adblocker/pull/1708) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1702](https://github.com/cliqz-oss/adblocker/pull/1702) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1700](https://github.com/cliqz-oss/adblocker/pull/1700) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Fix updater [#1699](https://github.com/cliqz-oss/adblocker/pull/1699) ([@remusao](https://github.com/remusao))
+
+#### :nut_and_bolt: Dependencies
+
+- build(deps): bump @types/chrome from 0.0.132 to 0.0.133 [#1703](https://github.com/cliqz-oss/adblocker/pull/1703) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump concurrently from 5.3.0 to 6.0.0 [#1697](https://github.com/cliqz-oss/adblocker/pull/1697) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.131 to 0.0.132 [#1694](https://github.com/cliqz-oss/adblocker/pull/1694) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.130 to 0.0.131 [#1689](https://github.com/cliqz-oss/adblocker/pull/1689) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.20.2 (Thu Feb 18 2021)
+
+#### :house: Internal
+
+- Update local assets [#1687](https://github.com/cliqz-oss/adblocker/pull/1687) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1684](https://github.com/cliqz-oss/adblocker/pull/1684) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### Authors: 2
+
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.20.1 (Tue Feb 16 2021)
+
+#### :bug: Bug Fix
+
+- build(deps): bump @types/chrome from 0.0.129 to 0.0.130 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.128 to 0.0.129 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### :house: Internal
+
+- Update local assets [#1679](https://github.com/cliqz-oss/adblocker/pull/1679) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1676](https://github.com/cliqz-oss/adblocker/pull/1676) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1666](https://github.com/cliqz-oss/adblocker/pull/1666) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1659](https://github.com/cliqz-oss/adblocker/pull/1659) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1656](https://github.com/cliqz-oss/adblocker/pull/1656) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1654](https://github.com/cliqz-oss/adblocker/pull/1654) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1653](https://github.com/cliqz-oss/adblocker/pull/1653) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1652](https://github.com/cliqz-oss/adblocker/pull/1652) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1650](https://github.com/cliqz-oss/adblocker/pull/1650) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1647](https://github.com/cliqz-oss/adblocker/pull/1647) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1637](https://github.com/cliqz-oss/adblocker/pull/1637) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1635](https://github.com/cliqz-oss/adblocker/pull/1635) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1632](https://github.com/cliqz-oss/adblocker/pull/1632) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1630](https://github.com/cliqz-oss/adblocker/pull/1630) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1627](https://github.com/cliqz-oss/adblocker/pull/1627) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1626](https://github.com/cliqz-oss/adblocker/pull/1626) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1622](https://github.com/cliqz-oss/adblocker/pull/1622) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1618](https://github.com/cliqz-oss/adblocker/pull/1618) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1616](https://github.com/cliqz-oss/adblocker/pull/1616) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1614](https://github.com/cliqz-oss/adblocker/pull/1614) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1609](https://github.com/cliqz-oss/adblocker/pull/1609) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1606](https://github.com/cliqz-oss/adblocker/pull/1606) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1599](https://github.com/cliqz-oss/adblocker/pull/1599) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- build(deps-dev): bump @types/node from 14.14.26 to 14.14.27 [#1673](https://github.com/cliqz-oss/adblocker/pull/1673) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.129 to 0.0.130 [#1671](https://github.com/cliqz-oss/adblocker/pull/1671) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump typescript from 4.1.4 to 4.1.5 [#1660](https://github.com/cliqz-oss/adblocker/pull/1660) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump tldts-experimental from 5.7.2 to 5.7.3 [#1657](https://github.com/cliqz-oss/adblocker/pull/1657) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump auto from 10.15.0 to 10.16.0 [#1648](https://github.com/cliqz-oss/adblocker/pull/1648) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump rollup from 2.38.2 to 2.38.3 [#1631](https://github.com/cliqz-oss/adblocker/pull/1631) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps-dev): bump rollup from 2.38.1 to 2.38.2 [#1628](https://github.com/cliqz-oss/adblocker/pull/1628) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+- build(deps): bump @types/chrome from 0.0.128 to 0.0.129 [#1621](https://github.com/cliqz-oss/adblocker/pull/1621) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
+# v1.20.0 (Thu Jan 21 2021)
+
+### Release Notes
+
+#### Initial support for extended CSS selectors (a.k.a. procedural filters) ([#1574](https://github.com/cliqz-oss/adblocker/pull/1574))
+
+Add initial support for extended CSS selectors (a.k.a. procedural filters) as well as the `:remove()` modifier for element hiding rules (note: the already supported `:style` modified now also works with extended CSS selectors). The following new pseudo-classes are implemented: `:has` (and its alias `:if`), `:has-text` (both string and RegExp literals), and `:not` (whenever its argument is also an extended selector, otherwise fallback to native implementation).
+
+Caveats:
+* Loading of extended css filters is disabled by default and needs to be toggled using the `loadExtendedSelectors` option while [initializing the blocker instance](https://github.com/cliqz-oss/adblocker/blob/3361723138f40c3cb96b4c6e611f2b030f75d891/packages/adblocker-webextension-example/background.ts#L61).
+* These news selectors are currently only supported by `WebExtensionBlocker` (support for Puppeteer, Electron and Playwright is not planned at this time but help from the community would be greatly appreciated).
+
+Miscellaneous changes:
+* Removal of unused `injectCSSRule` helper.
+* Replace Closure compiler by Terser.
+
+---
+
+#### :rocket: New Feature
+
+- Initial support for extended CSS selectors (a.k.a. procedural filters) [#1574](https://github.com/cliqz-oss/adblocker/pull/1574) ([@remusao](https://github.com/remusao))
+
+#### :bug: Bug Fix
+
+- build(deps): bump @types/chrome from 0.0.127 to 0.0.128 ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### :house: Internal
+
+- Update local assets [#1597](https://github.com/cliqz-oss/adblocker/pull/1597) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1593](https://github.com/cliqz-oss/adblocker/pull/1593) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1589](https://github.com/cliqz-oss/adblocker/pull/1589) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1588](https://github.com/cliqz-oss/adblocker/pull/1588) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1587](https://github.com/cliqz-oss/adblocker/pull/1587) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1584](https://github.com/cliqz-oss/adblocker/pull/1584) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1578](https://github.com/cliqz-oss/adblocker/pull/1578) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1575](https://github.com/cliqz-oss/adblocker/pull/1575) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1571](https://github.com/cliqz-oss/adblocker/pull/1571) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1568](https://github.com/cliqz-oss/adblocker/pull/1568) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1566](https://github.com/cliqz-oss/adblocker/pull/1566) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1565](https://github.com/cliqz-oss/adblocker/pull/1565) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1562](https://github.com/cliqz-oss/adblocker/pull/1562) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1560](https://github.com/cliqz-oss/adblocker/pull/1560) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1559](https://github.com/cliqz-oss/adblocker/pull/1559) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1556](https://github.com/cliqz-oss/adblocker/pull/1556) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1553](https://github.com/cliqz-oss/adblocker/pull/1553) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1552](https://github.com/cliqz-oss/adblocker/pull/1552) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1551](https://github.com/cliqz-oss/adblocker/pull/1551) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1548](https://github.com/cliqz-oss/adblocker/pull/1548) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1546](https://github.com/cliqz-oss/adblocker/pull/1546) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1545](https://github.com/cliqz-oss/adblocker/pull/1545) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1544](https://github.com/cliqz-oss/adblocker/pull/1544) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1543](https://github.com/cliqz-oss/adblocker/pull/1543) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1542](https://github.com/cliqz-oss/adblocker/pull/1542) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1541](https://github.com/cliqz-oss/adblocker/pull/1541) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1539](https://github.com/cliqz-oss/adblocker/pull/1539) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1536](https://github.com/cliqz-oss/adblocker/pull/1536) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1531](https://github.com/cliqz-oss/adblocker/pull/1531) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1530](https://github.com/cliqz-oss/adblocker/pull/1530) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1528](https://github.com/cliqz-oss/adblocker/pull/1528) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1526](https://github.com/cliqz-oss/adblocker/pull/1526) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+- Update local assets [#1524](https://github.com/cliqz-oss/adblocker/pull/1524) ([@remusao](https://github.com/remusao) [@adblocker-bot](https://github.com/adblocker-bot))
+
+#### :nut_and_bolt: Dependencies
+
+- build(deps): bump @types/chrome from 0.0.127 to 0.0.128 [#1561](https://github.com/cliqz-oss/adblocker/pull/1561) ([@dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
+
+#### Authors: 3
+
+- [@dependabot-preview[bot]](https://github.com/dependabot-preview[bot])
+- Adblocker Bot ([@adblocker-bot](https://github.com/adblocker-bot))
+- Rémi ([@remusao](https://github.com/remusao))
+
+---
+
 # v1.19.0 (Wed Dec 16 2020)
 
 #### :rocket: New Feature

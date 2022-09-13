@@ -1,7 +1,7 @@
 {
   "name": "@cliqz/adblocker-puppeteer-example",
   "private": true,
-  "version": "1.19.0",
+  "version": "1.25.0",
   "description": "Cliqz adblocker Puppeteer wrapper",
   "author": {
     "name": "Cliqz"
@@ -25,16 +25,16 @@
     "url": "https://github.com/cliqz-oss/adblocker/issues"
   },
   "dependencies": {
-    "@cliqz/adblocker-puppeteer": "^1.19.0",
-    "node-fetch": "^2.6.0",
-    "puppeteer": "5.x",
-    "ts-node": "^9.0.0"
+    "@cliqz/adblocker-puppeteer": "^1.25.0",
+    "node-fetch": "^3.0.0",
+    "puppeteer": "17.0.0",
+    "ts-node": "^10.0.0"
   },
   "devDependencies": {
-    "@types/node-fetch": "^2.5.4",
+    "@types/node-fetch": "^3.0.3",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.1.2"
+    "typescript": "^4.4.3"
   },
   "contributors": [
     {

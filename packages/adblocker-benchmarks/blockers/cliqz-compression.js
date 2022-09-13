@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2019 Cliqz GmbH. All rights reserved.
+ * Copyright (c) 2017-present Cliqz GmbH. All rights reserved.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -9,7 +9,7 @@
 const CliqzBase = require('./cliqz-base');
 
 module.exports = class CliqzCompression extends CliqzBase {
-  static parse(rawLists) {
-    return super.parse(rawLists, true);
+  static parse(rawLists, { debug = false } = {}) {
+    return super.parse(rawLists, { enableCompression: true, debug });
   }
 };
