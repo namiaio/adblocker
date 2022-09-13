@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2019 Cliqz GmbH. All rights reserved.
+ * Copyright (c) 2017-present Cliqz GmbH. All rights reserved.
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -52,7 +52,7 @@ function getTopLevelUrl(frame: puppeteer.Frame | null): string {
 /**
  * Create an instance of `Request` from `puppeteer.Request`.
  */
-export function fromPuppeteerDetails(details: puppeteer.Request): Request {
+export function fromPuppeteerDetails(details: puppeteer.HTTPRequest): Request {
   const sourceUrl = getTopLevelUrl(details.frame());
   const url = details.url();
   const type: RequestType = details.resourceType();
@@ -71,23 +71,23 @@ export function fromPuppeteerDetails(details: puppeteer.Request): Request {
  */
 export class BlockingContext {
   private readonly onFrameNavigated: (frame: puppeteer.Frame) => Promise<void>;
-  private readonly onRequest: (details: puppeteer.Request) => void;
+  private readonly onDomContentLoaded: () => Promise<void>;
+  private readonly onRequest: (details: puppeteer.HTTPRequest) => void;
 
   constructor(private readonly page: puppeteer.Page, private readonly blocker: PuppeteerBlocker) {
     this.onFrameNavigated = (frame) => blocker.onFrameNavigated(frame);
+    this.onDomContentLoaded = () => blocker.onFrameNavigated(this.page.mainFrame());
     this.onRequest = (request) => blocker.onRequest(request);
   }
 
   public async enable(): Promise<void> {
-    if (this.blocker.config.loadCosmeticFilters === true) {
-      // Register callback to cosmetics injection (CSS + scriptlets)
+    if (this.blocker.config.loadCosmeticFilters) {
+      // Register callbacks to cosmetics injection (CSS + scriptlets)
       this.page.on('frameattached', this.onFrameNavigated);
-      this.page.on('domcontentloaded', () => {
-        this.onFrameNavigated(this.page.mainFrame());
-      });
+      this.page.on('domcontentloaded', this.onDomContentLoaded);
     }
 
-    if (this.blocker.config.loadNetworkFilters === true) {
+    if (this.blocker.config.loadNetworkFilters) {
       // Make sure request interception is enabled for `page` before proceeding
       await this.page.setRequestInterception(true);
       // NOTES:
@@ -103,13 +103,14 @@ export class BlockingContext {
   }
 
   public async disable(): Promise<void> {
-    if (this.blocker.config.loadNetworkFilters === true) {
-      this.page.removeListener('request', this.onRequest);
+    if (this.blocker.config.loadNetworkFilters) {
+      this.page.off('request', this.onRequest);
       await this.page.setRequestInterception(false);
     }
 
-    if (this.blocker.config.loadCosmeticFilters === true) {
-      this.page.removeListener('frameattached', this.onFrameNavigated);
+    if (this.blocker.config.loadCosmeticFilters) {
+      this.page.off('frameattached', this.onFrameNavigated);
+      this.page.off('domcontentloaded', this.onDomContentLoaded);
     }
   }
 }
@@ -120,6 +121,8 @@ export class BlockingContext {
  */
 export class PuppeteerBlocker extends FiltersEngine {
   private readonly contexts: WeakMap<puppeteer.Page, BlockingContext> = new WeakMap();
+  // Defaults to undefined which preserves Legacy Mode behavior
+  private priority: number | undefined = undefined;
 
   // ----------------------------------------------------------------------- //
   // Helpers to enable and disable blocking for 'browser'
@@ -185,7 +188,8 @@ export class PuppeteerBlocker extends FiltersEngine {
     // based on the hostname of this frame. We need to get these as fast as
     // possible to reduce blinking when page loads.
     {
-      const { active, styles, scripts } = this.getCosmeticsFilters({
+      // TODO - implement extended filters for Puppeteer
+      const { active, styles, scripts /* , extended */ } = this.getCosmeticsFilters({
         domain,
         hostname,
         url,
@@ -193,6 +197,7 @@ export class PuppeteerBlocker extends FiltersEngine {
         // Done once per frame.
         getBaseRules: true,
         getInjectionRules: true,
+        getExtendedRules: true,
         getRulesFromHostname: true,
 
         // Will handle DOM features (see below).
@@ -216,34 +221,35 @@ export class PuppeteerBlocker extends FiltersEngine {
     // nodes. We first query all of them, then monitor the DOM for a few
     // seconds (or until one of the stopping conditions is met, see below).
 
-    const observer = new DOMMonitor(({ ids, hrefs, classes }) => {
-      const { active, styles } = this.getCosmeticsFilters({
-        domain,
-        hostname,
-        url,
+    const observer = new DOMMonitor((update) => {
+      if (update.type === 'features') {
+        const { active, styles } = this.getCosmeticsFilters({
+          domain,
+          hostname,
+          url,
 
-        // DOM information
-        classes,
-        hrefs,
-        ids,
+          // DOM information
+          ...update,
 
-        // Only done once per frame (see above).
-        getBaseRules: false,
-        getInjectionRules: false,
-        getRulesFromHostname: false,
+          // Only done once per frame (see above).
+          getBaseRules: false,
+          getInjectionRules: false,
+          getExtendedRules: false,
+          getRulesFromHostname: false,
 
-        // Allows to get styles for updated DOM.
-        getRulesFromDOM: true,
-      });
+          // Allows to get styles for updated DOM.
+          getRulesFromDOM: true,
+        });
 
-      // Abort if cosmetics are disabled
-      if (active === false) {
-        return;
+        // Abort if cosmetics are disabled
+        if (active === false) {
+          return;
+        }
+
+        this.injectStylesIntoFrame(frame, styles).catch(() => {
+          /* ignore */
+        });
       }
-
-      this.injectStylesIntoFrame(frame, styles).catch(() => {
-        /* ignore */
-      });
     });
 
     // This loop will periodically check if any new custom styles should be
@@ -266,7 +272,7 @@ export class PuppeteerBlocker extends FiltersEngine {
 
       try {
         const foundNewFeatures = observer.handleNewFeatures(
-          await frame.$$eval('[id],[class],[href]', extractFeaturesFromDOM),
+          await frame.$$eval(':root', extractFeaturesFromDOM),
         );
         numberOfIterations += 1;
 
@@ -289,8 +295,16 @@ export class PuppeteerBlocker extends FiltersEngine {
     } while (true);
   };
 
-  public onRequest = (details: puppeteer.Request): void => {
+  public setRequestInterceptionPriority = (defaultPriority = 0) =>
+    (this.priority = defaultPriority);
+
+  public onRequest = (details: puppeteer.HTTPRequest): void => {
+    if (details.isInterceptResolutionHandled?.()) {
+      return;
+    }
+
     const request = fromPuppeteerDetails(details);
+
     if (this.config.guessRequestTypeFromUrl === true && request.type === 'other') {
       request.guessTypeOfRequest();
     }
@@ -301,9 +315,10 @@ export class PuppeteerBlocker extends FiltersEngine {
       request.isMainFrame() ||
       (request.type === 'document' && frame !== null && frame.parentFrame() === null)
     ) {
-      details.continue();
+      details.continue(details.continueRequestOverrides?.(), 0);
       return;
     }
+
 
     let { redirect, match } = this.match(request);
 
@@ -313,20 +328,30 @@ export class PuppeteerBlocker extends FiltersEngine {
 
     if (redirect !== undefined) {
       if (redirect.contentType.endsWith(';base64')) {
-        details.respond({
-          body: Buffer.from(redirect.body, 'base64'),
-          contentType: redirect.contentType.slice(0, -7),
-        });
+        details.respond(
+          {
+            status: 200,
+            headers: {},
+            body: Buffer.from(redirect.body, 'base64'),
+            contentType: redirect.contentType.slice(0, -7),
+          },
+          this.priority,
+        );
       } else {
-        details.respond({
-          body: redirect.body,
-          contentType: redirect.contentType,
-        });
+        details.respond(
+          {
+            status: 200,
+            headers: {},
+            body: redirect.body,
+            contentType: redirect.contentType,
+          },
+          this.priority,
+        );
       }
     } else if (match === true) {
-      details.abort('blockedbyclient');
+      details.abort('blockedbyclient', this.priority);
     } else {
-      details.continue();
+      details.continue(details.continueRequestOverrides?.(), 0);
     }
   };
 
@@ -347,9 +372,13 @@ export class PuppeteerBlocker extends FiltersEngine {
     if (scripts.length !== 0) {
       for (let i = 0; i < scripts.length; i += 1) {
         promises.push(
-          frame.addScriptTag({
-            content: autoRemoveScript(scripts[i]),
-          }),
+          frame
+            .addScriptTag({
+              content: autoRemoveScript(scripts[i]),
+            })
+            .then(() => {
+              /* Ignore result */
+            }),
         );
       }
     }
